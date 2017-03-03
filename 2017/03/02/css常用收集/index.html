@@ -4,26 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>&#39;css3-transform-demo&#39; | zhuqinglian blog</title>
+    <title>css常用收集 | zhuqinglian blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="zhuqinglian">
     
 
     
-    <meta name="description" content="前言随着web的发展，对界面的视觉要求越来越高，在页面中增加动画，是一种特别好的一件事情，但是我对动画属性掌握的不是那么好，特别的抽时间去学习和总结。
-1.css的动画基本属性的学习2.css的动画的小demo的展现3.市场上现有的动画的框架的分析">
+    <meta name="description" content="这是一些自己常用的一些css收集，后续将持续添加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="'css3-transform-demo'">
-<meta property="og:url" content="http://gzzhuqinglian.github.io/2017/02/27/css3-transform-demo/index.html">
+<meta property="og:title" content="css常用收集">
+<meta property="og:url" content="http://gzzhuqinglian.github.io/2017/03/02/css常用收集/index.html">
 <meta property="og:site_name" content="zhuqinglian blog">
-<meta property="og:description" content="前言随着web的发展，对界面的视觉要求越来越高，在页面中增加动画，是一种特别好的一件事情，但是我对动画属性掌握的不是那么好，特别的抽时间去学习和总结。
-1.css的动画基本属性的学习2.css的动画的小demo的展现3.市场上现有的动画的框架的分析">
-<meta property="og:updated_time" content="2017-02-27T14:18:21.031Z">
+<meta property="og:description" content="这是一些自己常用的一些css收集，后续将持续添加">
+<meta property="og:updated_time" content="2017-03-03T03:13:57.335Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="'css3-transform-demo'">
-<meta name="twitter:description" content="前言随着web的发展，对界面的视觉要求越来越高，在页面中增加动画，是一种特别好的一件事情，但是我对动画属性掌握的不是那么好，特别的抽时间去学习和总结。
-1.css的动画基本属性的学习2.css的动画的小demo的展现3.市场上现有的动画的框架的分析">
+<meta name="twitter:title" content="css常用收集">
+<meta name="twitter:description" content="这是一些自己常用的一些css收集，后续将持续添加">
 
     
     <link rel="alternative" href="/atom.xml" title="zhuqinglian blog" type="application/atom+xml">
@@ -82,14 +79,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/02/27/css3-transform-demo/" title="&#39;css3-transform-demo&#39;" itemprop="url">&#39;css3-transform-demo&#39;</a>
+      <a href="/2017/03/02/css常用收集/" title="css常用收集" itemprop="url">css常用收集</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="zhuqinglian" target="_blank" itemprop="author">zhuqinglian</a>
 		
   <p class="article-time">
-    <time datetime="2017-02-27T08:44:44.000Z" itemprop="datePublished"> Published 2017-02-27</time>
+    <time datetime="2017-03-02T09:22:23.000Z" itemprop="datePublished"> Published 2017-03-02</time>
     
   </p>
 </header>
@@ -98,17 +95,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>随着web的发展，对界面的视觉要求越来越高，在页面中增加动画，是一种特别好的一件事情，但是我对动画属性掌握的不是那么好，特别的抽时间去学习和总结。</p>
-<p>1.css的动画基本属性的学习<br>2.css的动画的小demo的展现<br>3.市场上现有的动画的框架的分析</p>
-<a id="more"></a>
-<p>css3 transform 变形<br>首先由2d变形的相关api。translate位置变化，scale大小变化，rotate角度变化，skew是dom本身的形状的变化。<br>其次是3d变化的相关api。在2d的基础上增加了3维的变化，但是，3维的变化针对的dom本身的变化，通俗来讲，当一个dom的绕着y坐标旋转以后，在进行z坐标的变化是不一样的。</p>
-<p>css3 transition 过渡。<br>表示一个属性从从一个状态到其他的状态的变化过程。<br>一般来讲，，变化过程，有这么些属性控制，，过渡的属性，过渡的时间，过渡的函数，过渡的延时。<br>需要注意一点的是过渡的函数，不仅仅是常用的几种过渡函数，还有cubic-bezier表示，具体的可以点<a href="http://cubic-bezier.com/#.17,.67,.83,.67" target="_blank" rel="external">http://cubic-bezier.com/#.17,.67,.83,.67</a>查看<br>需要声明一点过渡是由于状态的变化造成的，所以是事件触发。一般是一次性的。</p>
-<p>css3 animation 动画</p>
-<p>说起动画，动画是一组过程组成。也就是我们常说的帧，属性keyframes 。<br>动画同时也有属性去限制他的相关的一些动画过程。<br>动画时间，动画函数，动画延时，动画次数，动画方向。<br>可以参考w3c的基本demo<br><a href="http://www.w3school.com.cn/css3/css3_animation.asp" target="_blank" rel="external">http://www.w3school.com.cn/css3/css3_animation.asp</a></p>
+		<p>这是一些自己常用的一些css收集，后续将持续添加<br><a id="more"></a><br>1、禁止内容换行<br><a style="word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;"></a><br>word-break： 属性规定自动换行的处理方法。<br>可选值：<br>normal 使用浏览器默认的换行规则。<br>break-all 允许在单词内换行。<br>keep-all 只能在半角空格或连字符处换行。</p>
+<p>white-space 属性设置如何处理元素内的空白。<br>可选值：<br>normal 默认。空白会被浏览器忽略。<br>pre 空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。<br>nowrap 文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。<br>pre-wrap 保留空白符序列，但是正常地进行换行。<br>pre-line 合并空白符序列，但是保留换行符。<br>inherit 规定应该从父元素继承 white-space 属性的值。</pre></p>
+<p>text-overflow,</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -121,7 +114,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://gzzhuqinglian.github.io/2017/02/27/css3-transform-demo/" data-title="&#39;css3-transform-demo&#39; | zhuqinglian blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://gzzhuqinglian.github.io/2017/03/02/css常用收集/" data-title="css常用收集 | zhuqinglian blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -134,19 +127,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/03/02/css常用收集/" title="css常用收集">
-  <strong>上一篇：</strong><br/>
-  <span>
-  css常用收集</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/02/27/common-amd-cmd/"  title="&#39;common-amd-cmd&#39;">
+<a href="/2017/02/27/css3-transform-demo/"  title="&#39;css3-transform-demo&#39;">
  <strong>下一篇：</strong><br/> 
- <span>&#39;common-amd-cmd&#39;
+ <span>&#39;css3-transform-demo&#39;
 </span>
 </a>
 </div>
@@ -161,7 +146,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ 
  
   </div>
 
