@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>quotedemo</title>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			.canvas_con{
+				position: relative;
+			}
+			.abs{
+				width: 100%;
+				height: 0px;
+				top:1px;
+				position: absolute;
+				border-bottom:1px dashed red;
+				display: inline-block;
+				opacity: 1;
+				z-index: 100;
+			}
+			.abs1{
+				height: 100%;
+				width: 0;
+				border-left: 2px dashed gainsboro;
+				position: absolute;
+				left: 40px;
+				border-left:1px dashed red;
+			}
+			#flag1:before{
+				display: inline-block;
+				content: attr(datacontent);
+				position:absolute;
+				top:-10px;
+				left: 4px;
+				background-color: gray;
+				padding: 2px 3px;
+				color:white;	
+			}
+			#flag2:after{
+				display: inline-block;
+				content: attr(datacontent);
+				position:absolute;
+				bottom:4px;
+				background-color: gray;
+				padding: 2px 3px;
+				color:white;
+				transform: translateX(-50%);		
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="canvas_con">
+			<div class="abs" id='flag1' style="display: none;" datacontent='aaa'>
+			</div>
+			<div class="abs1" id='flag2' style="display: none;" datacontent='12/20'>	
+			</div>
+			<canvas id="canvas" width="" height=""></canvas>
+		</div>
+		<!--<textarea name="" rows="" cols="" style="width: 100%;" id='good'>
+			
+		</textarea>-->
+		<script type="text/javascript">
+
+			var lins=[{open:8.61,time:20160613,close:8.11,high:8.73,low:8.11},{open:8.11,time:20160614,close:8.1,high:8.27,low:7.91},{open:7.96,time:20160615,close:8.35,high:8.45,low:7.9},{open:8.35,time:20160616,close:8.47,high:8.62,low:8.25},{open:8.48,time:20160617,close:8.29,high:8.5,low:8.23},{open:8.3,time:20160620,close:8.09,high:8.32,low:8},{open:8.18,time:20160621,close:8.16,high:8.45,low:8.12},{open:8.13,time:20160622,close:8.29,high:8.34,low:8},{open:8.3,time:20160623,close:8.16,high:8.41,low:8.1},{open:8.16,time:20160624,close:8.26,high:8.4,low:7.79},{open:8.13,time:20160627,close:8.44,high:8.45,low:8.13},{open:8.4,time:20160628,close:8.45,high:8.48,low:8.31},{open:8.52,time:20160629,close:8.54,high:8.81,low:8.46},{open:8.48,time:20160630,close:8.55,high:8.56,low:8.35},{open:8.55,time:20160701,close:8.5,high:8.68,low:8.41},{open:8.4,time:20160704,close:8.63,high:8.65,low:8.31},{open:8.63,time:20160705,close:8.59,high:8.75,low:8.54},{open:8.61,time:20160706,close:8.88,high:8.89,low:8.52},{open:8.85,time:20160707,close:8.71,high:8.89,low:8.62},{open:8.69,time:20160708,close:8.64,high:8.74,low:8.5},{open:8.51,time:20160711,close:8.3,high:8.58,low:8.28},{open:8.3,time:20160712,close:8.32,high:8.35,low:8.15},{open:8.3,time:20160713,close:8.27,high:8.33,low:8.2},{open:8.22,time:20160714,close:8.32,high:8.37,low:8.2},{open:8.29,time:20160715,close:8.25,high:8.38,low:8.24},{open:8.25,time:20160718,close:8.27,high:8.28,low:8.18},{open:8.25,time:20160719,close:8.63,high:8.65,low:8.21},{open:8.63,time:20160720,close:8.65,high:8.81,low:8.53},{open:8.65,time:20160721,close:8.94,high:9.06,low:8.55},{open:8.97,time:20160722,close:8.78,high:9.1,low:8.76},{open:8.82,time:20160725,close:8.76,high:8.88,low:8.66},{open:8.77,time:20160726,close:8.81,high:8.95,low:8.69},{open:8.82,time:20160727,close:8.01,high:8.9,low:7.98},{open:8.1,time:20160728,close:8.28,high:8.43,low:8},{open:8.3,time:20160729,close:8.59,high:8.75,low:8.23},{open:8.5,time:20160801,close:8.31,high:8.54,low:8.21},{open:8.26,time:20160802,close:8.41,high:8.41,low:8.24},{open:8.36,time:20160803,close:8.68,high:8.75,low:8.34},{open:8.7,time:20160804,close:8.74,high:8.85,low:8.58},{open:8.78,time:20160805,close:8.66,high:8.78,low:8.56},{open:8.58,time:20160808,close:8.68,high:8.68,low:8.38},{open:8.63,time:20160809,close:8.85,high:8.97,low:8.62},{open:8.81,time:20160810,close:8.79,high:8.91,low:8.73},{open:8.7,time:20160811,close:8.6,high:8.84,low:8.6},{open:8.57,time:20160812,close:8.71,high:8.74,low:8.52},{open:8.77,time:20160815,close:8.87,high:8.88,low:8.5},{open:8.86,time:20160816,close:8.84,high:8.95,low:8.78},{open:8.81,time:20160817,close:9.38,high:9.51,low:8.75},{open:9.76,time:20160818,close:9.66,high:9.89,low:9.4},{open:9.8,time:20160819,close:10.63,high:10.63,low:9.69}]		    
+		    
+		    var volumes=[
+		 		37317177,19717461,23173074,22029330,15142995,15245398,15544415,12923235,11872827,20494611,15300938,12325598,17886479,10681128,10381524,11813663,8845988,15277041,12146338,9713741,15021947,11601838,11857372,9802544,7066290,5268950,14249676,14181557,24003795,14157932,8100583,9178106,16293684,10146862,22520819,13823762,5706973,13273643,11928602,7730902,7422674,14174409,8999294,6540802,5186884,14000651,9943381,25846542,49017484,69325570
+		    ];
+		    
+		    var ma5=[9.17,8.85,8.59,8.41,8.26,8.26,8.27,8.26,8.2,8.19,8.26,8.32,8.37,8.45,8.5,8.53,8.56,8.63,8.66,8.69,8.62,8.57,8.45,8.37,8.29,8.29,8.35,8.42,8.55,8.65,8.75,8.79,8.66,8.53,8.49,8.4,8.32,8.45,8.55,8.56,8.63,8.72,8.74,8.72,8.73,8.76,8.76,8.88,9.09,9.48]
+		    var ma10=[8.96,8.99,9.02,8.99,8.85,8.72,8.56,8.42,8.3,8.23,8.26,8.3,8.32,8.32,8.34,8.4,8.44,8.5,8.55,8.59,8.58,8.57,8.54,8.52,8.49,8.46,8.46,8.44,8.46,8.47,8.52,8.57,8.54,8.54,8.57,8.58,8.55,8.56,8.54,8.52,8.52,8.52,8.6,8.63,8.64,8.7,8.74,8.81,8.9,9.1]
+		    var ma20=[8.37,8.39,8.41,8.44,8.44,8.46,8.5,8.53,8.56,8.58,8.61,8.64,8.67,8.66,8.6,8.56,8.5,8.46,8.43,8.41,8.42,8.43,8.43,8.42,8.42,8.43,8.45,8.47,8.51,8.53,8.55,8.57,8.54,8.53,8.53,8.52,8.51,8.5,8.5,8.5,8.52,8.54,8.57,8.58,8.61,8.64,8.65,8.68,8.72,8.81]
+		    function Chart(canvas,options){
+		    	if(canvas==null){
+		    		throw error('canvas is null');
+		    	}
+		    	if(options==null){
+		    		options={};
+		    	}
+		    	this.canvas=canvas;
+		    	this.ctx=this.canvas.getContext('2d'); 
+		    	this.width=options.width||document.body.clientWidth;
+		    	this.height=options.height||230;
+		    	
+		    	//左右上下边距
+		    	this.offsetLeft=options.offsetLeft||4;
+		    	this.offsetRight=options.offsetRight||4;
+		    	this.offsetTop=options.offsetTop||10;
+		    	this.offsetBottom=options.offsetBottom||0;
+		    	
+		    	this.k_v_space=14
+		    	this.volumeHeight=options.volumeHeight||70;
+		    	this.kHeight=this.height-this.offsetBottom-this.offsetTop-this.volumeHeight-this.k_v_space;
+		    	this.kWidth=this.width-this.offsetLeft-this.offsetRight;
+		    	
+		    	this.kbaseX=this.offsetLeft;
+		    	this.kendX=this.width-this.offsetRight;
+		    	this.kbaseY=this.offsetTop;
+		    	this.kendY=this.offsetTop+this.kHeight;
+		    	
+		    	this.vbaseX=this.offsetLeft;
+		    	this.vendX=this.width-this.offsetRight;
+		    	this.vbaseY=this.height-this.volumeHeight;
+		    	
+		    	//网格的相关参数
+		    	this.gridLinenum=options.gridYnum||5;
+		    	this.gridRownum=options.gridRownum||2;
+		    	this.gridLineColor=options.gridLineColor||'#e5e5e5';
+		    	
+		    	//蜡烛线的相关参数
+		    	this.candleMixNum=options.candleMixNum||20;
+		    	this.candleUpColor=options.candleUpColor||'red';
+		    	this.candleDownColor=options.candleDownColor||'green';
+		    	
+		    	this.canvas.width=this.width;
+		    	this.canvas.height=this.height;
+		    	
+		    	this.ma5Color='#efd3a3';
+		    	this.ma10Color='#a6d4f9';
+		    	this.ma20Color='#f7bbe7';
+		    	
+		    	
+		    	
+		    }
+		    Chart.prototype.drawma=function(ma,type){
+		    	var allwidth=this.kWidth/ma.length;
+				var width=allwidth*0.6;	
+		    	var map=[];
+		    	//this.ctx.lineWidth=0.88;
+		    	for(var i=0;i<ma.length;i++){
+		    		map.push({x:allwidth*0.5+allwidth*i+this.kbaseX,y:(this.khighprice-ma[i])*this.kspace});
+		    		
+		    	}
+		    	var color;
+		    	if('ma5'==type){
+		    		color=this.ma5Color;
+		    	}else if('ma10'==type){
+		    		color=this.ma10Color;
+		    	}else{
+		    		color=this.ma20Color;
+		    	}
+		    	this.drawline(map,color);
+		    }
+		    
+		    Chart.prototype.drawline=function(points,color){ 
+		    	this.ctx.save();
+				this.ctx.beginPath();	
+				this.ctx.translate(0.5,0.5); 
+				this.ctx.strokeStyle=color;
+				this.ctx.moveTo(points[0].x,points[0].y);
+				for(var i=1;i<points.length;i++){
+					this.ctx.lineTo(points[i].x,points[i].y);
+				}
+				
+				this.ctx.stroke();
+				this.ctx.restore();	
+				this.ctx.closePath();
+			}
+		    
+		    
+		    Chart.prototype.drawgrid=function(){
+				var space=this.kHeight/(this.gridLinenum-1);
+				for(var i=0;i<this.gridLinenum;i++){
+					this.drawline([{x:this.kbaseX,y:this.kbaseY+space*i},{x:this.kendX,y:this.kbaseY+space*i}],this.gridLineColor)
+				};
+				var w=this.kWidth;
+				var ws=w/(this.gridRownum+1);
+				for(var i=1;i<this.gridRownum+1;i++){
+					this.drawline([{x:this.kbaseX+i*ws,y:this.kbaseY},{x:this.kbaseX+i*ws,y:this.kendY}],this.gridLineColor)
+				}
+			}
+		    
+		    
+		    Chart.prototype.candle=function(points,color){
+		    	this.ctx.save();
+				this.ctx.beginPath();
+				this.ctx.fillStyle=color;
+				this.ctx.fillRect(points.x,points.y,points.width,points.height);
+				this.ctx.moveTo(points.x+points.width/2,points.y);
+				this.ctx.lineTo(points.x+points.width/2,points.high);
+				this.ctx.moveTo(points.x+points.width/2,points.y+points.height);
+				this.ctx.lineTo(points.x+points.width/2,points.low);
+				this.ctx.closePath();
+				this.ctx.lineWidth=1;
+				this.ctx.strokeStyle=color;
+				this.ctx.stroke();
+				this.ctx.restore();
+			}
+		    	
+		    Chart.prototype.drawkline=function(lines){
+				var allwidth=this.kWidth/lines.length;
+				var width=allwidth*0.6;
+				var high=lines[0].high;
+				var low=lines[0].low;
+				this.klines=lines;
+				for(var i=1;i<lines.length;i++){
+					if(low>lines[i].low){
+						low=lines[i].low;
+					}
+					if(high<lines[i].high){
+						high=lines[i].high;
+					}
+				}
+				
+				var dateIndex=Math.round(this.klines.length/3);
+				var ws=this.kWidth/(this.gridRownum+1);
+				for(var i=1;i<this.gridRownum+1;i++){
+					this.ctx.textAlign="center";
+					this.ctx.fillStyle='#000'
+					this.ctx.fillText(this.klines[i*dateIndex].time,this.kbaseX+i*ws,this.kendY+this.k_v_space-1);
+				}
+				
+				
+				var space=(this.kHeight)/(high-low);
+				
+				this.khighprice=high;
+				this.kspace=space;
+				this.candles=[];
+				for(var i=0;i<lines.length;i++){
+					var highp=(high-lines[i].high)*space+this.kbaseY;
+					var lowp=(high-lines[i].low)*space+this.kbaseY;
+					if(lines[i].close>=lines[i].open){
+						this.candles.push({type:'s',time:lines[i].time, x:allwidth*0.2+allwidth*i+this.kbaseX,y:(high-lines[i].close)*space+this.kbaseY,width:width,height:(lines[i].close-lines[i].open)*space,high:highp,low:lowp})
+						this.candle({x:allwidth*0.2+allwidth*i+this.kbaseX,y:(high-lines[i].close)*space+this.kbaseY,width:width,height:(lines[i].close-lines[i].open)*space,high:highp,low:lowp},this.candleUpColor)
+					}
+					else{
+						this.candles.push({type:'j',time:lines[i].time,x:allwidth*0.2+allwidth*i+this.kbaseX,y:(high-lines[i].open)*space+this.kbaseY,width:width,height:(lines[i].open-lines[i].close)*space,high:highp,low:lowp})
+						this.candle({x:allwidth*0.2+allwidth*i+this.kbaseX,y:(high-lines[i].open)*space+this.kbaseY,width:width,height:(lines[i].open-lines[i].close)*space,high:highp,low:lowp},this.candleDownColor)
+					}
+					
+				}
+				this.ctx.textAlign='left';
+				this.ctx.fillText(parseFloat(high).toFixed(2),this.kbaseX,this.kbaseY+10);
+				this.ctx.fillText(parseFloat(low).toFixed(2),this.kbaseX,this.kendY-4);
+			    this.drawVolumeLine(volumes);
+			    
+				
+			}
+		    
+		    Chart.prototype.drawVolumeLine=function(volumes){
+				var max=volumes[0];
+				for(var i=1;i<volumes.length;i++){
+					if(max<volumes[i]){
+						max=volumes[i];
+					}
+				}
+				var sp=this.volumeHeight/max;
+				var base=this.vbaseY;
+				
+				var allwidth=this.kWidth/volumes.length;
+				var width=this.kWidth/volumes.length*0.6;
+				this.drawline([{x:this.vbaseX,y:this.vbaseY},{x:this.vendX,y:this.vbaseY}],this.gridLineColor);
+
+				for(var i=0;i<volumes.length;i++){
+					if(this.candles[i].type=='s'){
+						this.ctx.fillStyle=this.candleUpColor;
+					}else{
+						this.ctx.fillStyle=this.candleDownColor;
+					}
+					this.ctx.fillRect(i*allwidth+allwidth*0.2+this.vbaseX,this.height-sp*volumes[i],width,sp*volumes[i])
+				}
+			}
+		    
+		    
+		    Chart.prototype.addEvent=function(){
+				var that=this;
+				this.canvas.addEventListener("mousemove", function(event){
+					var cbox= chart.canvas.getBoundingClientRect();
+					that.search(event.clientX-cbox.left);
+				}, false);
+				this.canvas.addEventListener("mouseout", function(event){
+					that.beforex=null;
+					document.getElementById('flag1').style.display='none';
+					document.getElementById('flag2').style.display='none'
+				}, false);
+
+				this.canvas.addEventListener("touchmove", function(event){
+					var cbox= chart.canvas.getBoundingClientRect();				
+					that.search(event.touches[0].clientX-cbox.left);
+				}, false);
+				this.canvas.addEventListener("touchend", function(event){
+					that.beforex=null;
+					document.getElementById('flag1').style.display='none';
+					document.getElementById('flag2').style.display='none'
+				}, false);
+				
+			}
+		    
+		    
+		     Chart.prototype.search=function (x){
+				var allwidth=this.kWidth/this.candles.length;
+				var width=allwidth*0.6;
+				var beforex=this.beforex;
+				if(beforex){
+					if(x>allwidth+beforex){
+						this.beforex=allwidth+beforex;
+						this.index=this.index+1;
+						var po=this.beforex+width/2;
+						document.getElementById('flag2').style.left=po+'px';
+						
+						if(chart.candles[chart.index].type=='s'){
+							var t=this.candles[this.index].y;
+							
+							document.getElementById('flag1').setAttribute('datacontent',this.klines[this.index].close);
+							document.getElementById('flag2').setAttribute('datacontent',this.klines[this.index].time);
+							document.getElementById('flag1').style.top=t+'px';
+						}
+						else{
+							var t=this.candles[this.index].y+this.candles[this.index].height;
+							document.getElementById('flag1').setAttribute('datacontent',this.klines[this.index].close);
+							document.getElementById('flag2').setAttribute('datacontent',this.klines[this.index].time);
+							document.getElementById('flag1').style.top=t+'px';
+						}
+						
+					}
+					else if(x<=beforex-width){
+						this.beforex=beforex-allwidth;
+						this.index=this.index-1;
+						var po=this.beforex+width/2;
+						document.getElementById('flag2').style.left=po+'px';
+						
+						if(chart.candles[chart.index].type=='s'){
+							var t=this.candles[this.index].y;
+							document.getElementById('flag1').setAttribute('datacontent',this.klines[this.index].close);
+							document.getElementById('flag2').setAttribute('datacontent',this.klines[this.index].time);
+							document.getElementById('flag1').style.top=t+'px';
+						}
+						else{
+							var t=this.candles[this.index].y+this.candles[this.index].height;
+							document.getElementById('flag1').setAttribute('datacontent',this.klines[this.index].close);
+							document.getElementById('flag2').setAttribute('datacontent',this.klines[this.index].time);
+							document.getElementById('flag1').style.top=t+'px';
+						}
+						
+					}
+				}else{
+					if(x>=this.kbaseX&&x<this.kendX){
+						var index=Math.floor((x-this.kbaseX)/allwidth);
+						
+						if(x>this.candles[index].x&&x<this.candles[index].x+width){
+							this.index=index;
+							this.beforex=this.candles[index].x
+							
+							var po=this.candles[index].x+width/2;
+							
+							
+							document.getElementById('flag2').style.left=po+'px';
+							
+							if(chart.candles[index].type=='s'){
+								var t=this.candles[index].y;
+								document.getElementById('flag1').style.top=t+'px';
+							}
+							else{
+								var t=chart.candles[index].y+chart.candles[index].height;
+								document.getElementById('flag1').style.top=t+'px';
+							}
+							
+							document.getElementById('flag1').style.display='inline-block';
+							document.getElementById('flag2').style.display='inline-block'
+							
+						}
+					}
+					
+				}
+				
+			}
+		    
+		    
+		     var chart=new Chart(document.getElementById("canvas"));
+		     chart.drawgrid();
+		     chart.drawkline(lins);
+		     chart.addEvent();
+		     chart.drawma(ma5,'ma5');
+		     chart.drawma(ma10,'ma10');
+		     chart.drawma(ma20,'ma20');
+		    
+		    
+		    
+		    
+			
+			
+		</script>
+	</body>
+</html>
