@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>just test</title>
+	</head>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+			background-color: aquamarine;
+		}
+		.show{
+			width: 70%;
+			height: 200px;
+			background-color: red;
+			position: fixed;
+			bottom: 100px;
+			left: 15%;
+			transition: all 0.5s;
+			
+		}
+	</style>
+	<body>
+		<div style="height: 20000px;"></div>
+		<div id="show" class="show"></div>
+		<script type="text/javascript">
+			var show=true;
+			document.onscroll=function(){
+				document.getElementById("show").style.opacity=0;
+				show=false;
+					setTimeout(function(){
+						if(show){
+							document.getElementById("show").style.opacity=1;
+						}
+						else{
+							show=true;
+						}
+						
+				},700)
+			}
+		
+			
+		</script>
+	</body>
+</html>
