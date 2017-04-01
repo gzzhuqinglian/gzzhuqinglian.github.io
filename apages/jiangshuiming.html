@@ -25,18 +25,14 @@
 		<div style="height: 20000px;"></div>
 		<div id="show" class="show"></div>
 		<script type="text/javascript">
-			var show=true;
+			var time=null;
 			document.onscroll=function(){
 				document.getElementById("show").style.opacity=0;
-				show=false;
-					setTimeout(function(){
-						if(show){
-							document.getElementById("show").style.opacity=1;
-						}
-						else{
-							show=true;
-						}
-						
+				if(time){
+					clearTimeout(time);
+				}
+				time=setTimeout(function(){
+					document.getElementById("show").style.opacity=1;
 				},700)
 			}
 		
