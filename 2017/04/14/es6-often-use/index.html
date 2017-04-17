@@ -4,23 +4,20 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>防抖动 | zhuqinglian blog</title>
+    <title>&#39;es6-often-use&#39; | zhuqinglian blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="zhuqinglian">
     
 
     
-    <meta name="description" content="防抖动，通俗来讲，是不让函数执行太多，因为在dom的事件中可能短时间内触发太多次。执行太多，影响性能。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="防抖动">
-<meta property="og:url" content="http://gzzhuqinglian.github.io/2017/03/06/防抖动/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="'es6-often-use'">
+<meta property="og:url" content="http://gzzhuqinglian.github.io/2017/04/14/es6-often-use/index.html">
 <meta property="og:site_name" content="zhuqinglian blog">
-<meta property="og:description" content="防抖动，通俗来讲，是不让函数执行太多，因为在dom的事件中可能短时间内触发太多次。执行太多，影响性能。">
-<meta property="og:updated_time" content="2017-03-07T01:18:04.545Z">
+<meta property="og:updated_time" content="2017-04-14T07:17:53.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="防抖动">
-<meta name="twitter:description" content="防抖动，通俗来讲，是不让函数执行太多，因为在dom的事件中可能短时间内触发太多次。执行太多，影响性能。">
+<meta name="twitter:title" content="'es6-often-use'">
 
     
     <link rel="alternative" href="/atom.xml" title="zhuqinglian blog" type="application/atom+xml">
@@ -79,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/06/防抖动/" title="防抖动" itemprop="url">防抖动</a>
+      <a href="/2017/04/14/es6-often-use/" title="&#39;es6-often-use&#39;" itemprop="url">&#39;es6-often-use&#39;</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="zhuqinglian" target="_blank" itemprop="author">zhuqinglian</a>
 		
   <p class="article-time">
-    <time datetime="2017-03-06T14:37:25.000Z" itemprop="datePublished"> 發表於 2017-03-06</time>
+    <time datetime="2017-04-14T07:17:52.000Z" itemprop="datePublished"> 發表於 2017-04-14</time>
     
   </p>
 </header>
@@ -99,39 +96,7 @@
 		
 		</div>
 		
-		<p>防抖动，通俗来讲，是不让函数执行太多，因为在dom的事件中可能短时间内触发太多次。<br>执行太多，影响性能。<br><a id="more"></a></p>
-<p>//对函数进行了处理，封装了下，保证在规定时间内只能执行一次，也有可能不执行。<br>function scroll(fun,wait){<br>    var time;<br>    return function (){<br>        clearTimeout(time)<br>        var time=setTimeout(func,wait)<br>    }<br>}<br>//滚动事件<br>window.addListener(‘scroll’,scroll(function(){<br> console.log(‘just for test’);<br>},500),false)</p>
-<p>上面的代码有一个问题，在settimeout执行的时候，已经改变了this对象。进行修改下。</p>
-<p>function scroll(func,wait){</p>
-<pre><code>var time;
-var delayfunc=function(){
-   var context=this;
-   func.apply(context,agrments)
-}
-return function(){
-    clearTimeout(time);
-    time=setTimeout(delayfunc,wait)
-}
-</code></pre><p>}</p>
-<p>//上面的代码能保证，在规定时间内不能执行多次，但是，也有可能，在很长时间能没能执行。为了保证规定的时间一定能执行一次，再次修改。</p>
-<p>function throttle(func, wait, mustRun) {<br>    var timeout,<br>        startTime = new Date();</p>
-<pre><code>return function() {
-    var context = this,
-        args = arguments,
-        curTime = new Date();
-
-    clearTimeout(timeout);
-    // 如果达到了规定的触发时间间隔，触发 handler
-    if(curTime - startTime &gt;= mustRun){
-        func.apply(context,args);
-        startTime = curTime;
-    // 没达到触发间隔，重新设定定时器
-    }else{
-        timeout = setTimeout(func, wait);
-    }
-};
-</code></pre><p>};</p>
-  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -143,7 +108,7 @@ return function(){
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://gzzhuqinglian.github.io/2017/03/06/防抖动/" data-title="防抖动 | zhuqinglian blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://gzzhuqinglian.github.io/2017/04/14/es6-often-use/" data-title="&#39;es6-often-use&#39; | zhuqinglian blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -157,18 +122,18 @@ return function(){
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/03/22/得到元素位置/" title="&#39;得到元素位置&#39;">
+ <a href="/2017/04/17/hbulid快捷键/" title="hbulid快捷键">
   <strong>上一篇：</strong><br/>
   <span>
-  &#39;得到元素位置&#39;</span>
+  hbulid快捷键</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/03/03/http-datail/"  title="&#39;http-datail&#39;">
+<a href="/2017/03/22/得到元素位置/"  title="&#39;得到元素位置&#39;">
  <strong>下一篇：</strong><br/> 
- <span>&#39;http-datail&#39;
+ <span>&#39;得到元素位置&#39;
 </span>
 </a>
 </div>
